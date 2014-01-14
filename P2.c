@@ -17,22 +17,22 @@ struct node
 	struct	node *next;
 };
 
-int	SEARCH(struct node *, int num);		//check the list for num
+int		SEARCH(struct node *, int num);		//check the list for num
 void	INSERT(struct node *, int num);		//insert num into the list
 void	DEL(struct node *, int num);		//delete num from the list
-void	DLIST(struct node *);			//clears the list
-void	TRAVERSE(struct node *);		//display the entire list
-void	HELP(void);				//display the help message
-void	ERROR(void);				//display the error message
-int	CHECKSPACE(char *);			//detects extra chars in the buffer or lack of integers
-int	CHECK(char *);				//detects extra chars in the buffer
-int	CHECKINT(char *);			//detects extra chars in the buffer
+void	DLIST(struct node *);				//clears the list
+void	TRAVERSE(struct node *);			//display the entire list
+void	HELP(void);							//display the help message
+void	ERROR(void);						//display the error message
+int		CHECKSPACE(char *);					//detects extra chars in the buffer or lack of integers
+int		CHECK(char *);						//detects extra chars in the buffer
+int		CHECKINT(char *);					//detects extra chars in the buffer
 
 int main(void)
 {
-	char buffer[40]; 					//temp storage
+	char buffer[40]; 							//temp storage
 	int i;
-	int returns;						//number of items scanned by sscanf
+	int returns;								//number of items scanned by sscanf
 	int num;
 	char c;
 	struct node *list;
@@ -43,7 +43,7 @@ int main(void)
 	while (1)
 	{
 		printf("\n>");
-		fgets(buffer, 40, stdin);			//input to temp storage
+		fgets(buffer, 40, stdin);				//input to temp storage
 
 		for (i = 0; buffer[i] != '\n'; i++)		//check inputs to be valid
 		{
@@ -95,7 +95,7 @@ int main(void)
 				else ERROR();
 			}
 
-			if (c == 'q')				//quit if q is entered
+			if (c == 'q')					//quit if q is entered
 			{
 				if (CHECK(buffer) == 1)
 					break;
@@ -128,7 +128,7 @@ int main(void)
 
 void TRAVERSE(struct node *L)				//Prints the entire list
 {
-	L = L->next;					//move past header node
+	L = L->next;							//move past header node
 	printf("\n");
 	while (NULL != L)
 	{
@@ -138,21 +138,21 @@ void TRAVERSE(struct node *L)				//Prints the entire list
 	printf("\n");
 }
 
-void INSERT(struct node *L, int num)			//insert num into the list
+void INSERT(struct node *L, int num)		//insert num into the list
 {
 	struct node *new;
 	new = malloc(sizeof(struct node));
 	new->next = NULL;
 
-	new->data = num;				//insert data into node
+	new->data = num;						//insert data into node
 
-	new->next = L->next;				//make sure to set empty things first
+	new->next = L->next;					//make sure to set empty things first
 	L->next = new;
 }
 
 int SEARCH(struct node *L, int num)			//returns 1 if found, 0 if not found
 {
-	L = L->next;					//move past header node
+	L = L->next;							//move past header node
 	if (NULL == L) return 0;
 	while (1)
 	{
@@ -170,7 +170,7 @@ int SEARCH(struct node *L, int num)			//returns 1 if found, 0 if not found
 
 void DEL(struct node *L, int num)			//delete num from the list
 {
-	struct node *Lb4;				//Lb4 holds the address of the previous node
+	struct node *Lb4;						//Lb4 holds the address of the previous node
 	Lb4 = L;
 	L = L->next;
 	while (1)
@@ -193,9 +193,9 @@ void DEL(struct node *L, int num)			//delete num from the list
 	}
 }
 
-void DLIST(struct node *L)				//clears the entire list
+void DLIST(struct node *L)					//clears the entire list
 {
-	struct node *Lb4;				//Lb4 holds the address of the previous node
+	struct node *Lb4;						//Lb4 holds the address of the previous node
 	Lb4 = L;
 	
 	L = L->next;
@@ -211,7 +211,7 @@ void DLIST(struct node *L)				//clears the entire list
 	}
 }
 
-void HELP(void)						//displays the help message
+void HELP(void)								//displays the help message
 {
 	printf("\nCOMMANDS:\n\n");
 	printf("      <integer>:   Adds integer to the list if it's not already there\n");
@@ -225,7 +225,7 @@ void HELP(void)						//displays the help message
 
 }
 
-void ERROR(void)					//displays the error message
+void ERROR(void)							//displays the error message
 {
 	printf("\nInvalid command. Enter '?' for help.\n");
 }
